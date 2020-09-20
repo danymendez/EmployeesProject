@@ -1,55 +1,6 @@
 ﻿@model EmployeesProject.WebApp.ViewModels.EmployeeViewModel
 
-    <div class="row">
-        <form asp-action="Form" asp-controller="Employee" method="post">
-            <h1>Agregar empleados</h1>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.Nombres"></label>
-                    <input asp-for="Employee.Nombres" class="form-control">
-                    <span asp-validation-for="Employee.Nombres" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.Apellidos"></label>
-                    <input asp-for="Employee.Apellidos" class="form-control">
-                    <span asp-validation-for="Employee.Apellidos" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.FechaNacimiento"></label>
-                    <input asp-for="Employee.FechaNacimiento" class="form-control">
-                    <span asp-validation-for="Employee.FechaNacimiento" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.DUI"></label>
-                    <input asp-for="Employee.DUI" class="form-control">
-                    <span asp-validation-for="Employee.DUI" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.NIT"></label>
-                    <input asp-for="Employee.NIT" class="form-control">
-                    <span asp-validation-for="Employee.NIT" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.ISSS"></label>
-                    <input asp-for="Employee.ISSS" class="form-control">
-                    <span asp-validation-for="Employee.ISSS" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-12">
-                    <label asp-for="Employee.Telefono"></label>
-                    <input asp-for="Employee.Telefono" class="form-control">
-                    <span asp-validation-for="Employee.Telefono" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <button type="submit" class="btn btn-primary col-2">Guardar</button>
-                <button type="button" class="btn btn-primary col-2">Modificar</button>
-                <button type="button" class="btn btn-primary col-2">Eliminar</button>
-                <button type="button" class="btn btn-primary col-2">Importar</button>
-                <button type="button" class="btn btn-primary col-2">Exportar</button>
-
-            </div>
-        </form>
-    </div>
+    <partial name="_PartialEmployee.cshtml" />
     <div class="row">
         <div class="col-12">
             <table id="employees-table" class="display" style="width:100%">
