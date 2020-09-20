@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EmployeesProject.EL;
 using EmployeesProject.Tests.Utils;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -29,24 +30,38 @@ namespace EmployeesProject.Tests.Api
                 DUI = "00000",
                 FechaNacimiento = DateTime.Now,
                 ISSS=0,
-                NIT="",
-                Telefono=""
+                NIT="000",
+                Telefono="0000"
             };
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var responseInsert = await _client.PostAsJsonAsync(apiUrlEmployee, employee);
             var tupleInserted = await GetEntityResponse<Employee>(responseInsert);
-            Assert.Equal(HttpStatusCode.OK, tupleInserted.Item1);
+            Assert.True(HttpStatusCode.OK == tupleInserted.Item1, tupleInserted.Item3);
             Assert.NotNull(tupleInserted.Item2);
 
 
         }
-
-        public async Task<Tuple<HttpStatusCode, T>> GetEntityResponse<T>(HttpResponseMessage response)
+         [Fact]
+        public async Task GetAll_Should_Return_Employee()
         {
+
+            var response = await _client.GetAsync(apiUrlEmployee);
+            var tuple = await GetEntityResponse<Employee[]>(response);
+            Assert.Equal(HttpStatusCode.OK, tuple.Item1);
+            Assert.NotNull(tuple.Item2);
+        }
+
+        public async Task<Tuple<HttpStatusCode, T, string>> GetEntityResponse<T>(HttpResponseMessage response)
+        {
+
+            var bodyResponseString = 
+                await response.Content.ReadAsStringAsync();
+ 
+
             var forecast = JsonConvert.DeserializeObject<T>(
               await response.Content.ReadAsStringAsync()
             );
-            return new Tuple<HttpStatusCode, T>(response.StatusCode, forecast);
+            return new Tuple<HttpStatusCode, T,string>(response.StatusCode, forecast,bodyResponseString);
         }
     }
 }

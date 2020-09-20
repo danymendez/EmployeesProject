@@ -7,12 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\coreitem\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\coreitem\.github\FUNDING.yml" />
+    <None Include="wwwroot\coreitem\.github\ISSUE_TEMPLATE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeesProject.EL\EmployeesProject.EL.csproj" />
     <ProjectReference Include="..\EmployeesProject.Utils\EmployeesProject.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\common\" />
   </ItemGroup>
 
 </Project>

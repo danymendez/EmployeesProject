@@ -16,6 +16,7 @@ namespace EmployeesProject.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -28,7 +29,9 @@ namespace EmployeesProject.Api
            {
                o.UseSqlServer(Configuration["connectionStrings:EmployeeDbConn"], c => c.MigrationsAssembly("EmployeesProject.Api"));
            });
-            services.AddControllers();
+            services.AddControllers(p=>p.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+            _ => "The field is required."));
+
             services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });

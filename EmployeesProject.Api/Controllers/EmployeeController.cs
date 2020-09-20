@@ -12,6 +12,7 @@ namespace EmployeesProject.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+ 
     public class EmployeeController : ControllerBase
     {
         private EmployeeBL EmployeeBL;
