@@ -105,7 +105,7 @@ function eliminar(id) {
             alert('el registro fue eliminado');
        
             instanceTable.ajax.reload();
-            resetFile();
+           
          
         } else {
             alert('error');
