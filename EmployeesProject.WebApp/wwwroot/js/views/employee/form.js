@@ -1,9 +1,13 @@
-﻿$(document).ready(function () {
+﻿var instanceTable;
+$(document).ready(function () {
    /// $('#employees-table').DataTable();
-  
+    $('.datepicker').datepicker({
+        language: "es-ES",
+        format: "dd/mm/yyyy"
+    });
     var uri = $('form').attr('action').replace('Form', 'JsonForm') + '?transaction=GetAll';
     var token = $('input[name="__RequestVerificationToken"]').val();
-    $('#employees-table').DataTable({
+    instanceTable= $('#employees-table').DataTable({
       
         destroy: true,
         "language": {
@@ -34,10 +38,11 @@
             { "data": "telefono" }
         ],
         "columnDefs": [{
-            
+            "targets": 7,
+            "searchable": false,
             "mRender": function (data, type, full) {
                
-                return '<div></div>';
+                return '<button type="button" class="btn btn-info" onclick="modificar(' + full.id + ');">Modificar</button><button type="button" onclick="eliminar(' + full.id +')" class="btn btn-danger">Eliminar</button>';
             }
         },
             {
@@ -67,8 +72,7 @@ function modificar(id) {
     // Set up a handler for when the task for the request is complete
     xhr.onload = function () {
         if (xhr.status == 200) {
-            alert('sucess');
-            console.log(xhr.response);
+           
             var obj = JSON.parse(xhr.response);
             $('#Employee_Nombres').val(obj.employee.nombres);
             $('#Employee_Apellidos').val(obj.employee.apellidos);
@@ -77,6 +81,7 @@ function modificar(id) {
             $('#Employee_NIT').val(obj.employee.nit);
             $('#Employee_ISSS').val(obj.employee.isss);
             $('#Employee_Telefono').val(obj.employee.telefono);
+            $('#formModal').trigger('click');
         } else {
             alert('error');
             console.error(xhr.response);
@@ -98,7 +103,8 @@ function eliminar(id) {
     xhr.onload = function () {
         if (xhr.status == 200) {
             alert('el registro fue eliminado');
-            console.log(xhr.response);
+       
+            instanceTable.ajax.reload();
          
         } else {
             alert('error');
@@ -110,3 +116,12 @@ function eliminar(id) {
     xhr.send(this.formData);
 }
 
+function reset() {
+    document.getElementById("formularioEmployee").reset();
+}
+
+function hidemodal() {
+   
+    $('#exampleModal').modal('hide');
+    reset();
+}

@@ -29,14 +29,17 @@ FormUtils.prototype.send = function () {
 
 FormUtils.prototype.post = function () {
     var xhr = new XMLHttpRequest();
-
+    var fom = this;
     // Open the connection
     xhr.open(this.method, this.action, true);
 
     // Set up a handler for when the task for the request is complete
     xhr.onload = function () {
         if (xhr.status == 200) {
-            alert('sucess');
+            alert('se guardó correctamente');
+            $('#exampleModal').closest('.modal').modal('hide');
+            $('#fileModal').closest('.modal').modal('hide');
+            instanceTable.ajax.reload();
         } else {
             alert('error');
             console.error(xhr.response);
