@@ -15,11 +15,11 @@
                         <th>NIT</th>
                         <th>ISSS</th>
                         <th>Teléfono</th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.Employees)
+                    @*@foreach (var item in Model.Employees)
                     {
                     <tr>
 
@@ -32,7 +32,7 @@
                         <td>@item.Telefono</td>
                         <td><button type="button" class="btn btn-info" onclick="modificar(@item.Id)">Modificar</button><button type="button" onclick="eliminar(@item.Id)" class="btn btn-danger">Eliminar</button></td>
                     </tr>
-                    }
+                    }*@
                 </tbody>
             </table>
         </div>

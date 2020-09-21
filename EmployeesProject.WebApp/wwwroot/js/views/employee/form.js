@@ -1,5 +1,56 @@
 ﻿$(document).ready(function () {
-    $('#employees-table').DataTable();
+   /// $('#employees-table').DataTable();
+  
+    var uri = $('form').attr('action').replace('Form', 'JsonForm') + '?transaction=GetAll';
+    var token = $('input[name="__RequestVerificationToken"]').val();
+    $('#employees-table').DataTable({
+      
+        destroy: true,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        // "processing": "false",
+        "ajax": {
+            "url":uri,
+            "datatype": "json",
+            'beforeSend': function (request) {
+                request.setRequestHeader("RequestVerificationToken", token);
+            },
+            "contentType": "application/json",
+            "data": function (d) {
+               // return JSON.stringify(datos);
+            },
+            "type": "Get",
+            "dataSrc": "employees"
+        },
+        "columns": [
+
+            { "data": "nombres" },
+            { "data": "apellidos" },
+            { "data": "fechaNacimiento" },
+            { "data": "dui" },
+            { "data": "nit" },
+            { "data": "isss" },
+            { "data": "telefono" }
+        ],
+        "columnDefs": [{
+            
+            "mRender": function (data, type, full) {
+               
+                return '<div></div>';
+            }
+        },
+            {
+                "aTargets": [2],
+                "mData": "fechaNacimiento",
+                "mRender": function (data, type, full) {
+                    if (data === null) { return ''; } else {
+                        return moment(data).format('DD/MM/YYYY');
+                    }
+                }
+            }
+        ]
+    });
 });
 
 function exportToExcel() {
@@ -58,3 +109,4 @@ function eliminar(id) {
     // Send the data.
     xhr.send(this.formData);
 }
+

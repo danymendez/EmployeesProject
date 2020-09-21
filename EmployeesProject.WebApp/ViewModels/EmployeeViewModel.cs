@@ -56,6 +56,7 @@ namespace EmployeesProject.WebApp.ViewModels
                     Employees = await GetAll();
                     break;
                 case TransactionEnum.GetAll:
+                        Employees = await GetAll();
                     break;
                 default:
                     break;
