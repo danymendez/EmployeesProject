@@ -105,6 +105,7 @@ function eliminar(id) {
             alert('el registro fue eliminado');
        
             instanceTable.ajax.reload();
+            resetFile();
          
         } else {
             alert('error');
@@ -118,6 +119,10 @@ function eliminar(id) {
 
 function reset() {
     document.getElementById("formularioEmployee").reset();
+}
+
+function resetFile() {
+    document.getElementById("fileForm").reset();
 }
 
 function hidemodal() {

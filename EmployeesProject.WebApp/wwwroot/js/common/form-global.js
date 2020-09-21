@@ -40,6 +40,7 @@ FormUtils.prototype.post = function () {
             $('#exampleModal').closest('.modal').modal('hide');
             $('#fileModal').closest('.modal').modal('hide');
             instanceTable.ajax.reload();
+            reset();
         } else {
             alert('error');
             console.error(xhr.response);
