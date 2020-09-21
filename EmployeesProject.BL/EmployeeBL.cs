@@ -26,6 +26,17 @@ namespace EmployeesProject.BL
             return Employee;
         }
 
+         /// <summary>
+        /// Insert Employees in database
+        /// </summary>
+        /// <param name="employees"></param>
+        /// <returns></returns>
+        public List<Employee> CreateMany(List<Employee> employees)
+        {  
+            var Employees = dal.CreateMany(employees);
+            return Employees;
+        }
+
         /// <summary>
         /// Update Employee in database
         /// </summary>

@@ -7,6 +7,7 @@ using EmployeesProject.EL;
 using EmployeesProject.Utils.Enums;
 using EmployeesProject.Utils.Helpers;
 using EmployeesProject.WebApp.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -37,7 +38,17 @@ namespace EmployeesProject.WebApp.Controllers
         {  _employeeViewModel.helperApi = employeeViewModel.helperApi;
             await _employeeViewModel.Execute();
 
-            return View(employeeViewModel);
+            return Json(employeeViewModel);
         }
+
+        [HttpPost]
+         public ActionResult AddFile(EmployeeViewModel _employeeViewModel)
+        {  _employeeViewModel.helperApi = employeeViewModel.helperApi;
+           
+
+            return Json(_employeeViewModel.InsertExcelToDb(_employeeViewModel.FormFile));
+        }
+
+
     }
 }

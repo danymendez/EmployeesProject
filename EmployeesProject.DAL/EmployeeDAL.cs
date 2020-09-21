@@ -27,6 +27,18 @@ namespace EmployeesProject.DAL
         }
 
          /// <summary>
+        /// Insert Employees in database
+        /// </summary>
+        /// <param name="employees"></param>
+        /// <returns></returns>
+        public List<Employee> CreateMany(List<Employee> employees)
+        {  
+            dbcontext.AddRange(employees);
+            dbcontext.SaveChanges();
+            return employees;
+        }
+
+         /// <summary>
         /// Update Employee in database
         /// </summary>
         /// <param name="entity"></param>

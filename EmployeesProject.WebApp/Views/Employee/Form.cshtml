@@ -1,6 +1,8 @@
 ﻿@model EmployeesProject.WebApp.ViewModels.EmployeeViewModel
 
     <partial name="_PartialEmployee.cshtml" />
+    @*<input type="file" class="hide" id="importar" onchange="checkfile(this);" value="Importar" />
+    <button type="button" data-import="importar" class="btn btn-primary">Importar</button>*@
     <div class="row">
         <div class="col-12">
             <table id="employees-table" class="display" style="width:100%">
@@ -12,7 +14,7 @@
                         <th>DUI</th>
                         <th>NIT</th>
                         <th>ISSS</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,5 +36,7 @@
         </div>
     </div>
     @section scripts {
+
+        <script type="text/javascript" src="~/js/common/defaults.js"></script>
         <script type="text/javascript" src="~/js/views/employee/form.js"></script>
     }

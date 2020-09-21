@@ -44,6 +44,14 @@ namespace EmployeesProject.Api.Controllers
             return InsertedEntity;
         }
 
+          // POST api/<EmployeeController>
+        [HttpPost("PostMany")]
+        public List<Employee> PostMany(List<Employee> employees)
+        {
+               var entities = EmployeeBL.CreateMany(employees);
+            return entities;
+        }
+
         // PUT api/<EmployeeController>/5
         [HttpPut]
         public Employee Put(Employee entity)
