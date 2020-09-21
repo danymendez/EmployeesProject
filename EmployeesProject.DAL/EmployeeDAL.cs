@@ -44,10 +44,17 @@ namespace EmployeesProject.DAL
         /// <param name="entity"></param>
         /// <returns></returns>
         public Employee Update(Employee entity)
-        {
-            dbcontext.Attach(entity);
+        { var entityToModified = dbcontext.Employee.Find(entity.Id); 
+            entityToModified.Nombres = entity.Nombres;
+            entityToModified.Apellidos = entity.Apellidos;
+            entityToModified.FechaNacimiento = entity.FechaNacimiento;
+            entityToModified.DUI=entity.DUI;
+            entityToModified.NIT = entity.NIT;
+             entityToModified.ISSS = entity.ISSS;
+              entityToModified.Telefono = entity.Telefono;
+            dbcontext.Attach(entityToModified);
             dbcontext.SaveChanges();
-            return entity;
+            return entityToModified;
         }
 
         /// <summary>

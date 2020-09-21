@@ -32,7 +32,7 @@ namespace EmployeesProject.Utils.Helpers
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                  throw ex;
             }
             return entity;
         }
@@ -53,7 +53,7 @@ namespace EmployeesProject.Utils.Helpers
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                  throw ex;
             }
             return lista;
         }
@@ -68,14 +68,17 @@ namespace EmployeesProject.Utils.Helpers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = await client.PostAsJsonAsync(uri + urlMethod, clase);
 
-                if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode){
                     clase = await response.Content.ReadAsAsync<T>();
+                }
 
-
+                else {
+                     throw new System.InvalidOperationException(response.Content.ReadAsStringAsync().Result);
+                        }
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                throw ex;
             }
             return clase;
         }
@@ -98,7 +101,7 @@ namespace EmployeesProject.Utils.Helpers
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                  throw ex;
 
             }
             return clase;
@@ -119,7 +122,7 @@ namespace EmployeesProject.Utils.Helpers
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                  throw ex;
             }
             return isSuccess;
         }
@@ -139,7 +142,7 @@ namespace EmployeesProject.Utils.Helpers
             }
             catch (Exception ex)
             {
-                //ExceptionUtility.LogException(ex);
+                  throw ex;
             }
             return default(T);
         }

@@ -29,7 +29,7 @@ namespace EmployeesProject.Tests.Api
                 Apellidos = "Nombre dos",
                 DUI = "00000",
                 FechaNacimiento = DateTime.Now,
-                ISSS=0,
+                ISSS="000",
                 NIT="000",
                 Telefono="0000"
             };

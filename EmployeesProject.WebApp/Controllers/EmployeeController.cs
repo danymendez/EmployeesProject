@@ -33,10 +33,23 @@ namespace EmployeesProject.WebApp.Controllers
             return View(employeeViewModel);
         }
 
+         public async Task<ActionResult> JsonForm(TransactionEnum transaction,int id=0)
+        {   await employeeViewModel.Initialize(id,transaction);
+            return Json(employeeViewModel);
+        }
+
         [HttpPost]
          public async Task<ActionResult> Form(EmployeeViewModel _employeeViewModel)
         {  _employeeViewModel.helperApi = employeeViewModel.helperApi;
             await _employeeViewModel.Execute();
+
+            return Json(employeeViewModel);
+        }
+     
+         public async Task<ActionResult> Delete(int id)
+        {  employeeViewModel.Employee= new Employee{ Id=id};
+            employeeViewModel.Transaction = TransactionEnum.Delete;
+            await employeeViewModel.Execute();
 
             return Json(employeeViewModel);
         }
@@ -49,6 +62,21 @@ namespace EmployeesProject.WebApp.Controllers
             return Json(_employeeViewModel.InsertExcelToDb(_employeeViewModel.FormFile));
         }
 
+       
+         public ActionResult ExportToExcel()
+        {  string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            string fileName = "evaluación.xlsx";
+            var content = employeeViewModel.ExportToExcel();
+            return File(content, contentType, fileName);
+        }
+
+         public ActionResult ReportAge(int age)
+        {  string contentType = "application/pdf";
+            string fileName = "reportePruebaPractica.pdf";
+            var content = employeeViewModel.ExportToPdf(new EL.Filters.EmployeeFilter{Age=age });
+      
+            return File(content, contentType, fileName);
+        }
 
     }
 }

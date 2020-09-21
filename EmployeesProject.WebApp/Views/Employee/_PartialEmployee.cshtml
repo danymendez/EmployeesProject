@@ -7,6 +7,14 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal">
     Importar
 </button>
+
+<a asp-action="ExportToExcel" asp-controller="Employee" class="btn btn-primary">
+    Exportar
+</a>
+
+<a asp-action="ReportAge" asp-route-age="30" asp-controller="Employee" class="btn btn-primary">
+    Reporte de Edad
+</a>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -21,9 +29,11 @@
 
                 <div class="modal-body">
 
-
+                    <input type="hidden" asp-for="Transaction" />
+                    <input type="hidden" asp-for="Employee.Id" />
                     <div class="form-row">
                         <div class="form-group col-md-12">
+
                             <label asp-for="Employee.Nombres"></label>
                             <input asp-for="Employee.Nombres" class="form-control">
                             <span asp-validation-for="Employee.Nombres" class="text-danger"></span>
@@ -59,15 +69,6 @@
                             <span asp-validation-for="Employee.Telefono" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-row">
-                        @*<button type="submit" class="btn btn-primary col-2">Guardar</button>
-                <button type="button" class="btn btn-primary col-2">Modificar</button>
-                <button type="button" class="btn btn-primary col-2">Eliminar</button>
-                <button type="button" class="btn btn-primary col-2">Importar</button>
-                <button type="button" class="btn btn-primary col-2">Exportar</button>*@
-
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

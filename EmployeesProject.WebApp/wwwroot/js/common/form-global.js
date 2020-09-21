@@ -39,6 +39,7 @@ FormUtils.prototype.post = function () {
             alert('sucess');
         } else {
             alert('error');
+            console.error(xhr.response);
         }
     };
 

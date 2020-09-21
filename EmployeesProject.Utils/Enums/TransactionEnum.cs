@@ -9,6 +9,7 @@ namespace EmployeesProject.Utils.Enums
         Insert,
         Update,
         Get,
-        GetAll
+        GetAll,
+        Delete
     }
 }
