@@ -27,11 +27,11 @@ namespace EmployeesProject.Tests.Api
                 Id = 0,
                 Nombres = "Nombre uno",
                 Apellidos = "Nombre dos",
-                DUI = "00000",
+                DUI = "00000000-0",
                 FechaNacimiento = DateTime.Now,
-                ISSS="000",
-                NIT="000",
-                Telefono="0000"
+                ISSS="0000",
+                NIT="9105-000000-518-6",
+                Telefono="(+503) 2222-2222"
             };
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var responseInsert = await _client.PostAsJsonAsync(apiUrlEmployee, employee);

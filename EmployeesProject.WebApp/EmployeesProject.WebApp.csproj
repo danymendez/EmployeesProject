@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\coreitem\.github\CONTRIBUTING.md" />
     <None Include="wwwroot\coreitem\.github\FUNDING.yml" />
     <None Include="wwwroot\coreitem\.github\ISSUE_TEMPLATE.md" />
@@ -27,6 +31,10 @@
   <ItemGroup>
     <ProjectReference Include="..\EmployeesProject.EL\EmployeesProject.EL.csproj" />
     <ProjectReference Include="..\EmployeesProject.Utils\EmployeesProject.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="..\.dockerignore" />
   </ItemGroup>
 
 </Project>
